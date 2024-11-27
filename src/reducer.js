@@ -1,3 +1,5 @@
+// https://redux.js.org/tutorials/fundamentals/part-4-store
+
 import { combineReducers } from 'redux'
 
 import todosReducer from './features/todos/todosSlice'

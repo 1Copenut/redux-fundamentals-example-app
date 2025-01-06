@@ -18,19 +18,68 @@ const unsubscribe = store.subscribe(() => {
 })
 
 // Now dispatch some actions
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about reducers' })
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about stores' })
+// Create a new todo
+store.dispatch({
+  type: 'todos/todoAdded',
+  payload: { text: 'Learn about actions' },
+})
 
-store.dispatch({ type: 'todos/todoToggled', payload: 0 })
-store.dispatch({ type: 'todos/todoToggled', payload: 1 })
+// Edit the todo text and color
+store.dispatch({
+  type: 'todos/todoEdited',
+  payload: {
+    id: 0,
+    text: 'Complete all the todo actions',
+    color: 'purple',
+  },
+})
 
-store.dispatch({ type: 'filters/statusFilterChanged', payload: 'Active' })
+// Don't change anything but dispatch the edit action anyhow
+store.dispatch({
+  type: 'todos/todoEdited',
+  payload: {
+    id: 0,
+    text: 'Learn about actions',
+    color: '',
+  },
+})
 
 store.dispatch({
-  type: 'filters/colorFilterChanged',
-  payload: { color: 'red', changeType: 'added' },
+  type: 'todos/todoAdded',
+  payload: { text: 'Learn about reducers' },
 })
+
+store.dispatch({
+  type: 'todos/todoAdded',
+  payload: { text: 'Learn about stores' },
+})
+
+store.dispatch({
+  type: 'todos/todoToggled',
+  payload: { id: 0 },
+})
+
+store.dispatch({
+  type: 'todos/todoToggled',
+  payload: { id: 1 },
+})
+
+store.dispatch({
+  type: 'todos/todoAdded',
+  payload: { text: 'Marked for deletion' },
+})
+
+store.dispatch({
+  type: 'todos/todoDeleted',
+  payload: { id: 3 },
+})
+
+// store.dispatch({ type: 'filters/statusFilterChanged', payload: 'Active' })
+
+// store.dispatch({
+//   type: 'filters/colorFilterChanged',
+//   payload: { color: 'red', changeType: 'added' },
+// })
 
 // Stop listening to state updates
 unsubscribe()

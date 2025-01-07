@@ -34,7 +34,7 @@ store.dispatch({
   },
 })
 
-// Don't change anything but dispatch the edit action anyhow
+// Edit it a second time
 store.dispatch({
   type: 'todos/todoEdited',
   payload: {
@@ -44,6 +44,7 @@ store.dispatch({
   },
 })
 
+// Add some more todos
 store.dispatch({
   type: 'todos/todoAdded',
   payload: { text: 'Learn about reducers' },
@@ -54,6 +55,7 @@ store.dispatch({
   payload: { text: 'Learn about stores' },
 })
 
+// Toggle a few todos to "completed"
 store.dispatch({
   type: 'todos/todoToggled',
   payload: { id: 0 },
@@ -64,28 +66,72 @@ store.dispatch({
   payload: { id: 1 },
 })
 
+// Add another todo
 store.dispatch({
   type: 'todos/todoAdded',
   payload: { text: 'Marked for deletion' },
 })
 
+// Delete the todo we just added
 store.dispatch({
   type: 'todos/todoDeleted',
   payload: { id: 3 },
 })
 
-// store.dispatch({ type: 'filters/statusFilterChanged', payload: 'Active' })
+// Mark all todos completed
+store.dispatch({ type: 'todos/allCompleted' })
 
-// store.dispatch({
-//   type: 'filters/colorFilterChanged',
-//   payload: { color: 'red', changeType: 'added' },
-// })
+// Clear all completed todos
+store.dispatch({ type: 'todos/clearCompleted' })
+
+// Update status filter
+store.dispatch({ type: 'filters/statusFilterChanged', payload: 'active' })
+
+// Add and remove some colors
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'red', changeType: 'added' },
+})
+
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'red', changeType: 'added' },
+})
+
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'green', changeType: 'added' },
+})
+
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'green', changeType: 'added' },
+})
+
+// Keep the colors array as is when a nonsense value is passed
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'green', changeType: 'nonsense' },
+})
+
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'green', changeType: 'removed' },
+})
+
+store.dispatch({
+  type: 'filters/colorFilterChanged',
+  payload: { color: 'red', changeType: 'removed' },
+})
 
 // Stop listening to state updates
 unsubscribe()
 
 // Dispatch one more action to see what happens
-store.dispatch({ type: 'todos/todoAdded', payload: 'Try creating a store' })
+store.dispatch({
+  type: 'todos/todoAdded',
+  payload: { text: 'Try creating a store' },
+})
 
 ReactDOM.render(
   <React.StrictMode>

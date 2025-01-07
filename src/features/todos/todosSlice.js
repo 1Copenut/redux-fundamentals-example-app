@@ -53,6 +53,17 @@ export default function todosReducer(state = initialState, action) {
     case 'todos/todoDeleted': {
       return state.filter((todo) => todo.id !== action.payload.id)
     }
+    case 'todos/allCompleted': {
+      return state.map((todo) => {
+        return {
+          ...todo,
+          completed: true,
+        }
+      })
+    }
+    case 'todos/clearCompleted': {
+      return state.filter((todo) => todo.completed !== true)
+    }
     default:
       return state
   }
